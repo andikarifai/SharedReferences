@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.sharedpreference.databinding.FragmentProfilBinding
 import com.example.sharedpreference.model.Film
+import androidx.navigation.fragment.findNavController
 
 class ProfilFragment : Fragment() {
 
@@ -35,15 +36,12 @@ class ProfilFragment : Fragment() {
 
         // Setup onClickListener untuk logout button
         binding.logoutButton.setOnClickListener {
-            // Menghapus data dari Shared Preferences
-            sharedPreferences?.edit()?.clear()?.apply()
-
-            // Navigasi ke halaman login
-            val intent = Intent(activity, LoginFragment::class.java)
-            startActivity(intent)
-            activity?.finish()
+            findNavController().navigate(R.id.action_profilFragment_to_loginFragment)
         }
+
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sharedpreference.adapter.FilmAdapter
 import com.example.sharedpreference.databinding.FragmentHomeBinding
 import com.example.sharedpreference.viewModel.FilmViewModel
+import androidx.navigation.fragment.findNavController
+
 
 class HomeFragment : Fragment() {
 
@@ -27,7 +30,16 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navController = findNavController()
         setupRecyclerView()
+        val toolbar = binding.toolbar
+        val button = binding.ibprofile
+        // set click listener for the button
+        button.setOnClickListener {
+            // do something when button is clicked
+            navController.navigate(R.id.action_homeFragment_to_profilFragment)
+        }
+
     }
 
     private fun setupRecyclerView() {
